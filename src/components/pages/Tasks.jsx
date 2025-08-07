@@ -39,8 +39,8 @@ const Tasks = () => {
       ])
       
       // Sort tasks by due date
-      const sortedTasks = tasksData.sort((a, b) => 
-        new Date(a.dueDate) - new Date(b.dueDate)
+const sortedTasks = tasksData.sort((a, b) => 
+        new Date(a.due_date_c) - new Date(b.due_date_c)
       )
       
       setTasks(sortedTasks)
@@ -63,17 +63,17 @@ const Tasks = () => {
     let filtered = tasks
 
     if (searchTerm) {
-      filtered = filtered.filter(task =>
-        task.title.toLowerCase().includes(searchTerm.toLowerCase())
+filtered = filtered.filter(task =>
+        task.title_c?.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
 
     if (statusFilter) {
-      filtered = filtered.filter(task => task.status === statusFilter)
+filtered = filtered.filter(task => task.status_c === statusFilter)
     }
 
     if (priorityFilter) {
-      filtered = filtered.filter(task => task.priority === priorityFilter)
+filtered = filtered.filter(task => task.priority_c === priorityFilter)
     }
 
     setFilteredTasks(filtered)
@@ -98,8 +98,8 @@ const Tasks = () => {
     try {
       const task = tasks.find(t => t.Id === taskId)
       if (task) {
-        const newStatus = task.status === "completed" ? "pending" : "completed"
-        await taskService.update(taskId, { ...task, status: newStatus })
+const newStatus = task.status_c === "completed" ? "pending" : "completed"
+        await taskService.update(taskId, { status_c: newStatus })
         toast.success(`Task ${newStatus === "completed" ? "completed" : "reopened"}`)
         loadData()
       }
@@ -136,10 +136,10 @@ const Tasks = () => {
   }
 
   // Calculate task statistics
-  const pendingTasks = tasks.filter(task => task.status === "pending")
-  const completedTasks = tasks.filter(task => task.status === "completed")
-  const overdueTasks = pendingTasks.filter(task => isPast(new Date(task.dueDate)))
-  const todayTasks = pendingTasks.filter(task => isToday(new Date(task.dueDate)))
+const pendingTasks = tasks.filter(task => task.status_c === "pending")
+  const completedTasks = tasks.filter(task => task.status_c === "completed")
+  const overdueTasks = pendingTasks.filter(task => isPast(new Date(task.due_date_c)))
+  const todayTasks = pendingTasks.filter(task => isToday(new Date(task.due_date_c)))
 
   if (loading) return <Loading />
   if (error) return <Error message={error} onRetry={loadData} />

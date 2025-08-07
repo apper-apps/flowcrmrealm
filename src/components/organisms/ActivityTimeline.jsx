@@ -48,9 +48,9 @@ const ActivityTimeline = ({ activities, onEdit, onDelete }) => {
         >
           <Card className="bg-gradient-to-r from-white to-gray-50 border border-gray-200">
             <div className="flex items-start space-x-4">
-              <div className={`w-10 h-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center flex-shrink-0 ${getActivityColor(activity.type)}`}>
+<div className={`w-10 h-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center flex-shrink-0 ${getActivityColor(activity.type_c)}`}>
                 <ApperIcon 
-                  name={getActivityIcon(activity.type)} 
+name={getActivityIcon(activity.type_c)}
                   className="w-5 h-5" 
                 />
               </div>
@@ -58,17 +58,17 @@ const ActivityTimeline = ({ activities, onEdit, onDelete }) => {
               <div className="flex-1 space-y-2">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h4 className="font-medium text-gray-900">{activity.subject}</h4>
+<h4 className="font-medium text-gray-900">{activity.subject_c}</h4>
                     <div className="flex items-center space-x-3 mt-1">
-                      <Badge variant={getBadgeVariant(activity.type)} className="capitalize text-xs">
-                        {activity.type}
+<Badge variant={getBadgeVariant(activity.type_c)} className="capitalize text-xs">
+                        {activity.type_c}
                       </Badge>
                       <span className="text-sm text-gray-500">
-                        {format(new Date(activity.date), "MMM dd, yyyy 'at' h:mm a")}
+{format(new Date(activity.date_c), "MMM dd, yyyy 'at' h:mm a")}
                       </span>
-                      {activity.duration && (
+{activity.duration_c && (
                         <span className="text-sm text-gray-500">
-                          ({activity.duration} min)
+                          ({activity.duration_c} min)
                         </span>
                       )}
                     </div>
@@ -94,9 +94,9 @@ const ActivityTimeline = ({ activities, onEdit, onDelete }) => {
                   </div>
                 </div>
                 
-                {activity.notes && (
+{activity.notes_c && (
                   <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
-                    {activity.notes}
+                    {activity.notes_c}
                   </p>
                 )}
               </div>

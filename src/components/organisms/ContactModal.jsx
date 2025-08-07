@@ -5,33 +5,33 @@ import Button from "@/components/atoms/Button"
 import FormField from "@/components/molecules/FormField"
 
 const ContactModal = ({ contact, isOpen, onClose, onSave }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    industry: "technology",
-    notes: ""
+const [formData, setFormData] = useState({
+    Name: "",
+    company_c: "",
+    email_c: "",
+    phone_c: "",
+    industry_c: "technology",
+    notes_c: ""
   })
 
   useEffect(() => {
     if (contact) {
-      setFormData({
-        name: contact.name || "",
-        company: contact.company || "",
-        email: contact.email || "",
-        phone: contact.phone || "",
-        industry: contact.industry || "technology",
-        notes: contact.notes || ""
+setFormData({
+        Name: contact.Name || "",
+        company_c: contact.company_c || "",
+        email_c: contact.email_c || "",
+        phone_c: contact.phone_c || "",
+        industry_c: contact.industry_c || "technology",
+        notes_c: contact.notes_c || ""
       })
     } else {
-      setFormData({
-        name: "",
-        company: "",
-        email: "",
-        phone: "",
-        industry: "technology",
-        notes: ""
+setFormData({
+        Name: "",
+        company_c: "",
+        email_c: "",
+        phone_c: "",
+        industry_c: "technology",
+        notes_c: ""
       })
     }
   }, [contact])
@@ -87,8 +87,8 @@ const ContactModal = ({ contact, isOpen, onClose, onSave }) => {
               <FormField
                 label="Full Name"
                 type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+value={formData.Name}
+                onChange={(e) => setFormData({ ...formData, Name: e.target.value })}
                 placeholder="Enter full name"
                 required
               />
@@ -96,8 +96,8 @@ const ContactModal = ({ contact, isOpen, onClose, onSave }) => {
               <FormField
                 label="Company"
                 type="text"
-                value={formData.company}
-                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+value={formData.company_c}
+                onChange={(e) => setFormData({ ...formData, company_c: e.target.value })}
                 placeholder="Enter company name"
                 required
               />
@@ -106,8 +106,8 @@ const ContactModal = ({ contact, isOpen, onClose, onSave }) => {
                 <FormField
                   label="Email"
                   type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+value={formData.email_c}
+                  onChange={(e) => setFormData({ ...formData, email_c: e.target.value })}
                   placeholder="Enter email address"
                   required
                 />
@@ -115,8 +115,8 @@ const ContactModal = ({ contact, isOpen, onClose, onSave }) => {
                 <FormField
                   label="Phone"
                   type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+value={formData.phone_c}
+                  onChange={(e) => setFormData({ ...formData, phone_c: e.target.value })}
                   placeholder="Enter phone number"
                   required
                 />
@@ -125,16 +125,16 @@ const ContactModal = ({ contact, isOpen, onClose, onSave }) => {
               <FormField
                 label="Industry"
                 type="select"
-                value={formData.industry}
-                onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
+value={formData.industry_c}
+                onChange={(e) => setFormData({ ...formData, industry_c: e.target.value })}
                 options={industryOptions}
               />
               
               <FormField
                 label="Notes"
                 type="textarea"
-                value={formData.notes}
-                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+value={formData.notes_c}
+                onChange={(e) => setFormData({ ...formData, notes_c: e.target.value })}
                 placeholder="Add any additional notes..."
               />
             </div>

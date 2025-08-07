@@ -45,15 +45,15 @@ const Contacts = () => {
     let filtered = contacts
 
     if (searchTerm) {
-      filtered = filtered.filter(contact =>
-        contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        contact.email.toLowerCase().includes(searchTerm.toLowerCase())
+filtered = filtered.filter(contact =>
+        contact.Name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.company_c?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contact.email_c?.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
 
     if (industryFilter) {
-      filtered = filtered.filter(contact => contact.industry === industryFilter)
+filtered = filtered.filter(contact => contact.industry_c === industryFilter)
     }
 
     setFilteredContacts(filtered)
@@ -106,7 +106,7 @@ const Contacts = () => {
     setIsModalOpen(false)
   }
 
-  const industries = [...new Set(contacts.map(contact => contact.industry))].sort()
+const industries = [...new Set(contacts.map(contact => contact.industry_c).filter(Boolean))].sort()
 
   if (loading) return <Loading />
   if (error) return <Error message={error} onRetry={loadContacts} />

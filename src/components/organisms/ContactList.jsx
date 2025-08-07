@@ -20,21 +20,21 @@ const ContactList = ({ contacts, onEdit, onDelete, onView }) => {
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-purple-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-semibold text-lg">
-                    {contact.name.charAt(0).toUpperCase()}
+{contact.Name?.charAt(0).toUpperCase() || 'C'}
                   </span>
                 </div>
                 
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900">{contact.name}</h3>
-                  <p className="text-sm text-gray-600">{contact.company}</p>
+<h3 className="text-lg font-semibold text-gray-900">{contact.Name}</h3>
+                  <p className="text-sm text-gray-600">{contact.company_c}</p>
                   <div className="flex items-center space-x-4 mt-2">
                     <div className="flex items-center text-sm text-gray-500">
                       <ApperIcon name="Mail" className="w-4 h-4 mr-1" />
-                      {contact.email}
+{contact.email_c}
                     </div>
                     <div className="flex items-center text-sm text-gray-500">
                       <ApperIcon name="Phone" className="w-4 h-4 mr-1" />
-                      {contact.phone}
+{contact.phone_c}
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@ const ContactList = ({ contacts, onEdit, onDelete, onView }) => {
               
               <div className="flex items-center space-x-3">
                 <Badge variant="primary" className="capitalize">
-                  {contact.industry}
+{contact.industry_c}
                 </Badge>
                 
                 <div className="flex items-center space-x-2">

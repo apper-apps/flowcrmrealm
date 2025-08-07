@@ -6,46 +6,48 @@ import FormField from "@/components/molecules/FormField"
 import { format } from "date-fns"
 
 const TaskModal = ({ task, contacts, deals, isOpen, onClose, onSave }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    contactId: "",
-    dealId: "",
-    dueDate: "",
-    status: "pending",
-    priority: "medium"
+const [formData, setFormData] = useState({
+    title_c: "",
+    contact_id_c: "",
+    deal_id_c: "",
+    due_date_c: "",
+    status_c: "pending",
+    priority_c: "medium"
   })
 
   useEffect(() => {
     if (task) {
-      setFormData({
-        title: task.title || "",
-        contactId: task.contactId?.toString() || "",
-        dealId: task.dealId?.toString() || "",
-        dueDate: task.dueDate ? format(new Date(task.dueDate), "yyyy-MM-dd") : "",
-        status: task.status || "pending",
-        priority: task.priority || "medium"
+setFormData({
+        title_c: task.title_c || "",
+        contact_id_c: task.contact_id_c?.Id || task.contact_id_c?.toString() || "",
+        deal_id_c: task.deal_id_c?.Id || task.deal_id_c?.toString() || "",
+        due_date_c: task.due_date_c ? format(new Date(task.due_date_c), "yyyy-MM-dd") : "",
+        status_c: task.status_c || "pending",
+        priority_c: task.priority_c || "medium"
       })
     } else {
       const tomorrow = new Date()
       tomorrow.setDate(tomorrow.getDate() + 1)
-      setFormData({
-        title: "",
-        contactId: "",
-        dealId: "",
-        dueDate: format(tomorrow, "yyyy-MM-dd"),
-        status: "pending",
-        priority: "medium"
+setFormData({
+        title_c: "",
+        contact_id_c: "",
+        deal_id_c: "",
+        due_date_c: format(tomorrow, "yyyy-MM-dd"),
+        status_c: "pending",
+        priority_c: "medium"
       })
     }
   }, [task])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const taskData = {
-      ...formData,
-      contactId: parseInt(formData.contactId) || null,
-      dealId: parseInt(formData.dealId) || null,
-      dueDate: new Date(formData.dueDate).toISOString()
+const taskData = {
+      title_c: formData.title_c,
+      contact_id_c: parseInt(formData.contact_id_c) || null,
+      deal_id_c: parseInt(formData.deal_id_c) || null,
+      due_date_c: new Date(formData.due_date_c).toISOString(),
+      status_c: formData.status_c,
+      priority_c: formData.priority_c
     }
     onSave(taskData)
     onClose()
@@ -66,7 +68,7 @@ const TaskModal = ({ task, contacts, deals, isOpen, onClose, onSave }) => {
     { value: "", label: "No specific contact" },
     ...contacts.map(contact => ({
       value: contact.Id.toString(),
-      label: `${contact.name} (${contact.company})`
+label: `${contact.Name} (${contact.company_c})`
     }))
   ]
 
@@ -74,7 +76,7 @@ const TaskModal = ({ task, contacts, deals, isOpen, onClose, onSave }) => {
     { value: "", label: "No specific deal" },
     ...deals.map(deal => ({
       value: deal.Id.toString(),
-      label: deal.title
+label: deal.title_c
     }))
   ]
 
@@ -113,8 +115,8 @@ const TaskModal = ({ task, contacts, deals, isOpen, onClose, onSave }) => {
               <FormField
                 label="Task Title"
                 type="text"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+value={formData.title_c}
+                onChange={(e) => setFormData({ ...formData, title_c: e.target.value })}
                 placeholder="What needs to be done?"
                 required
               />
@@ -123,16 +125,16 @@ const TaskModal = ({ task, contacts, deals, isOpen, onClose, onSave }) => {
                 <FormField
                   label="Priority"
                   type="select"
-                  value={formData.priority}
-                  onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
+value={formData.priority_c}
+                  onChange={(e) => setFormData({ ...formData, priority_c: e.target.value })}
                   options={priorityOptions}
                 />
                 
                 <FormField
                   label="Status"
                   type="select"
-                  value={formData.status}
-                  onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+value={formData.status_c}
+                  onChange={(e) => setFormData({ ...formData, status_c: e.target.value })}
                   options={statusOptions}
                 />
               </div>
@@ -140,8 +142,8 @@ const TaskModal = ({ task, contacts, deals, isOpen, onClose, onSave }) => {
               <FormField
                 label="Due Date"
                 type="date"
-                value={formData.dueDate}
-                onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+value={formData.due_date_c}
+                onChange={(e) => setFormData({ ...formData, due_date_c: e.target.value })}
                 required
               />
               
@@ -149,16 +151,16 @@ const TaskModal = ({ task, contacts, deals, isOpen, onClose, onSave }) => {
                 <FormField
                   label="Related Contact"
                   type="select"
-                  value={formData.contactId}
-                  onChange={(e) => setFormData({ ...formData, contactId: e.target.value })}
+value={formData.contact_id_c}
+                  onChange={(e) => setFormData({ ...formData, contact_id_c: e.target.value })}
                   options={contactOptions}
                 />
                 
                 <FormField
                   label="Related Deal"
                   type="select"
-                  value={formData.dealId}
-                  onChange={(e) => setFormData({ ...formData, dealId: e.target.value })}
+value={formData.deal_id_c}
+                  onChange={(e) => setFormData({ ...formData, deal_id_c: e.target.value })}
                   options={dealOptions}
                 />
               </div>

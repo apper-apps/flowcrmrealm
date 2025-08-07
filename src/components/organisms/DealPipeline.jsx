@@ -15,8 +15,8 @@ const DealPipeline = ({ deals, onUpdateStage, onEdit, onDelete }) => {
     { id: "closed-lost", name: "Closed Lost", color: "bg-red-100 text-red-800" }
   ]
 
-  const getDealsByStage = (stage) => {
-    return deals.filter(deal => deal.stage === stage)
+const getDealsByStage = (stage) => {
+    return deals.filter(deal => deal.stage_c === stage)
   }
 
   const formatCurrency = (value) => {
@@ -32,7 +32,7 @@ const DealPipeline = ({ deals, onUpdateStage, onEdit, onDelete }) => {
       <div className="flex space-x-6 pb-4" style={{ minWidth: "1200px" }}>
         {stages.map((stage) => {
           const stageDeals = getDealsByStage(stage.id)
-          const stageValue = stageDeals.reduce((sum, deal) => sum + deal.value, 0)
+const stageValue = stageDeals.reduce((sum, deal) => sum + (deal.value_c || 0), 0)
           
           return (
             <div key={stage.id} className="flex-1 min-w-[280px]">
@@ -64,7 +64,7 @@ const DealPipeline = ({ deals, onUpdateStage, onEdit, onDelete }) => {
                       <div className="space-y-3">
                         <div className="flex items-start justify-between">
                           <h4 className="font-medium text-gray-900 text-sm leading-tight">
-                            {deal.title}
+{deal.title_c}
                           </h4>
                           <div className="flex items-center space-x-1">
                             <Button
@@ -89,30 +89,30 @@ const DealPipeline = ({ deals, onUpdateStage, onEdit, onDelete }) => {
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
                             <span className="text-lg font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
-                              {formatCurrency(deal.value)}
+{formatCurrency(deal.value_c)}
                             </span>
                             <Badge variant="primary" className="text-xs">
-                              {deal.probability}%
+{deal.probability_c}%
                             </Badge>
                           </div>
                           
                           <div className="flex items-center text-xs text-gray-500">
                             <ApperIcon name="Calendar" className="w-3 h-3 mr-1" />
-                            {new Date(deal.expectedCloseDate).toLocaleDateString()}
+{new Date(deal.expected_close_date_c).toLocaleDateString()}
                           </div>
                           
                           <div className="w-full bg-gray-200 rounded-full h-2">
                             <div 
                               className="bg-gradient-to-r from-primary-500 to-purple-500 h-2 rounded-full transition-all duration-300"
-                              style={{ width: `${deal.probability}%` }}
+style={{ width: `${deal.probability_c}%` }}
                             />
                           </div>
                         </div>
                         
                         <div className="flex items-center justify-between pt-2">
                           <select
-                            value={deal.stage}
-                            onChange={(e) => onUpdateStage(deal.Id, e.target.value)}
+value={deal.stage_c}
+                          onChange={(e) => onUpdateStage(deal.Id, e.target.value)}
                             className="text-xs bg-white border border-gray-200 rounded px-2 py-1 focus:outline-none focus:border-primary-500"
                           >
                             {stages.map(s => (

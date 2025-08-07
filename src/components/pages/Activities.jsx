@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import ApperIcon from "@/components/ApperIcon"
-import Button from "@/components/atoms/Button"
-import Select from "@/components/atoms/Select"
-import SearchBar from "@/components/molecules/SearchBar"
-import ActivityTimeline from "@/components/organisms/ActivityTimeline"
-import ActivityModal from "@/components/organisms/ActivityModal"
-import Loading from "@/components/ui/Loading"
-import Error from "@/components/ui/Error"
-import Empty from "@/components/ui/Empty"
-import activityService from "@/services/api/activityService"
-import contactService from "@/services/api/contactService"
-import dealService from "@/services/api/dealService"
-import { toast } from "react-toastify"
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import contactService from "@/services/api/contactService";
+import dealService from "@/services/api/dealService";
+import activityService from "@/services/api/activityService";
+import ApperIcon from "@/components/ApperIcon";
+import SearchBar from "@/components/molecules/SearchBar";
+import ActivityTimeline from "@/components/organisms/ActivityTimeline";
+import ActivityModal from "@/components/organisms/ActivityModal";
+import Loading from "@/components/ui/Loading";
+import Error from "@/components/ui/Error";
+import Empty from "@/components/ui/Empty";
+import Button from "@/components/atoms/Button";
+import Select from "@/components/atoms/Select";
 
 const Activities = () => {
   const [activities, setActivities] = useState([])
@@ -61,14 +61,14 @@ const Activities = () => {
     let filtered = activities
 
     if (searchTerm) {
-      filtered = filtered.filter(activity =>
-        activity.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        activity.notes?.toLowerCase().includes(searchTerm.toLowerCase())
+filtered = filtered.filter(activity =>
+        activity.subject_c?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        activity.notes_c?.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
 
     if (typeFilter) {
-      filtered = filtered.filter(activity => activity.type === typeFilter)
+filtered = filtered.filter(activity => activity.type_c === typeFilter)
     }
 
     setFilteredActivities(filtered)
@@ -174,9 +174,9 @@ const Activities = () => {
           <div className="flex items-center">
             <ApperIcon name="Phone" className="w-8 h-8 text-blue-600 mr-3" />
             <div>
-              <p className="text-sm text-blue-600 font-medium">Calls</p>
+<p className="text-sm text-blue-600 font-medium">Calls</p>
               <p className="text-2xl font-bold text-blue-700">
-                {activities.filter(a => a.type === "call").length}
+                {activities.filter(a => a.type_c === "call").length}
               </p>
             </div>
           </div>
@@ -187,18 +187,18 @@ const Activities = () => {
             <div>
               <p className="text-sm text-green-600 font-medium">Meetings</p>
               <p className="text-2xl font-bold text-green-700">
-                {activities.filter(a => a.type === "meeting").length}
+                {activities.filter(a => a.type_c === "meeting").length}
               </p>
             </div>
           </div>
         </div>
         <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border border-purple-200">
           <div className="flex items-center">
-            <ApperIcon name="Mail" className="w-8 h-8 text-purple-600 mr-3" />
+<ApperIcon name="Mail" className="w-8 h-8 text-purple-600 mr-3" />
             <div>
               <p className="text-sm text-purple-600 font-medium">Emails</p>
               <p className="text-2xl font-bold text-purple-700">
-                {activities.filter(a => a.type === "email").length}
+                {activities.filter(a => a.type_c === "email").length}
               </p>
             </div>
           </div>
@@ -209,7 +209,7 @@ const Activities = () => {
             <div>
               <p className="text-sm text-orange-600 font-medium">Notes</p>
               <p className="text-2xl font-bold text-orange-700">
-                {activities.filter(a => a.type === "note").length}
+                {activities.filter(a => a.type_c === "note").length}
               </p>
             </div>
           </div>

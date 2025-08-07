@@ -1,49 +1,51 @@
-import React, { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import ApperIcon from "@/components/ApperIcon"
-import Button from "@/components/atoms/Button"
-import FormField from "@/components/molecules/FormField"
-import { format } from "date-fns"
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { format } from "date-fns";
+import ApperIcon from "@/components/ApperIcon";
+import FormField from "@/components/molecules/FormField";
+import Button from "@/components/atoms/Button";
 
 const DealModal = ({ deal, contacts, isOpen, onClose, onSave }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    contactId: "",
-    value: "",
-    stage: "lead",
-    probability: "10",
-    expectedCloseDate: ""
+const [formData, setFormData] = useState({
+    title_c: "",
+    contact_id_c: "",
+    value_c: "",
+    stage_c: "lead",
+    probability_c: "10",
+    expected_close_date_c: ""
   })
 
   useEffect(() => {
     if (deal) {
-      setFormData({
-        title: deal.title || "",
-        contactId: deal.contactId || "",
-        value: deal.value?.toString() || "",
-        stage: deal.stage || "lead",
-        probability: deal.probability?.toString() || "10",
-        expectedCloseDate: deal.expectedCloseDate ? format(new Date(deal.expectedCloseDate), "yyyy-MM-dd") : ""
+setFormData({
+        title_c: deal.title_c || "",
+        contact_id_c: deal.contact_id_c?.Id || deal.contact_id_c || "",
+        value_c: deal.value_c?.toString() || "",
+        stage_c: deal.stage_c || "lead",
+        probability_c: deal.probability_c?.toString() || "10",
+        expected_close_date_c: deal.expected_close_date_c ? format(new Date(deal.expected_close_date_c), "yyyy-MM-dd") : ""
       })
     } else {
-      setFormData({
-        title: "",
-        contactId: "",
-        value: "",
-        stage: "lead",
-        probability: "10",
-        expectedCloseDate: ""
+setFormData({
+        title_c: "",
+        contact_id_c: "",
+        value_c: "",
+        stage_c: "lead",
+        probability_c: "10",
+        expected_close_date_c: ""
       })
     }
   }, [deal])
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault()
     const dealData = {
-      ...formData,
-      value: parseFloat(formData.value),
-      probability: parseInt(formData.probability),
-      expectedCloseDate: new Date(formData.expectedCloseDate).toISOString()
+      title_c: formData.title_c,
+      contact_id_c: parseInt(formData.contact_id_c) || null,
+      value_c: parseFloat(formData.value_c),
+      stage_c: formData.stage_c,
+      probability_c: parseInt(formData.probability_c),
+      expected_close_date_c: new Date(formData.expected_close_date_c).toISOString()
     }
     onSave(dealData)
     onClose()
@@ -60,9 +62,9 @@ const DealModal = ({ deal, contacts, isOpen, onClose, onSave }) => {
 
   const contactOptions = [
     { value: "", label: "Select a contact" },
-    ...contacts.map(contact => ({
+...contacts.map(contact => ({
       value: contact.Id.toString(),
-      label: `${contact.name} (${contact.company})`
+      label: `${contact.Name} (${contact.company_c})`
     }))
   ]
 
@@ -101,8 +103,8 @@ const DealModal = ({ deal, contacts, isOpen, onClose, onSave }) => {
               <FormField
                 label="Deal Title"
                 type="text"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+value={formData.title_c}
+                onChange={(e) => setFormData({ ...formData, title_c: e.target.value })}
                 placeholder="Enter deal title"
                 required
               />
@@ -110,8 +112,8 @@ const DealModal = ({ deal, contacts, isOpen, onClose, onSave }) => {
               <FormField
                 label="Contact"
                 type="select"
-                value={formData.contactId}
-                onChange={(e) => setFormData({ ...formData, contactId: e.target.value })}
+value={formData.contact_id_c}
+                onChange={(e) => setFormData({ ...formData, contact_id_c: e.target.value })}
                 options={contactOptions}
                 required
               />
@@ -120,8 +122,8 @@ const DealModal = ({ deal, contacts, isOpen, onClose, onSave }) => {
                 <FormField
                   label="Deal Value ($)"
                   type="number"
-                  value={formData.value}
-                  onChange={(e) => setFormData({ ...formData, value: e.target.value })}
+value={formData.value_c}
+                  onChange={(e) => setFormData({ ...formData, value_c: e.target.value })}
                   placeholder="0"
                   min="0"
                   step="0.01"
@@ -131,8 +133,8 @@ const DealModal = ({ deal, contacts, isOpen, onClose, onSave }) => {
                 <FormField
                   label="Probability (%)"
                   type="number"
-                  value={formData.probability}
-                  onChange={(e) => setFormData({ ...formData, probability: e.target.value })}
+value={formData.probability_c}
+                  onChange={(e) => setFormData({ ...formData, probability_c: e.target.value })}
                   min="0"
                   max="100"
                   required
@@ -143,16 +145,16 @@ const DealModal = ({ deal, contacts, isOpen, onClose, onSave }) => {
                 <FormField
                   label="Stage"
                   type="select"
-                  value={formData.stage}
-                  onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
+value={formData.stage_c}
+                  onChange={(e) => setFormData({ ...formData, stage_c: e.target.value })}
                   options={stageOptions}
                 />
                 
                 <FormField
                   label="Expected Close Date"
                   type="date"
-                  value={formData.expectedCloseDate}
-                  onChange={(e) => setFormData({ ...formData, expectedCloseDate: e.target.value })}
+value={formData.expected_close_date_c}
+                  onChange={(e) => setFormData({ ...formData, expected_close_date_c: e.target.value })}
                   required
                 />
               </div>

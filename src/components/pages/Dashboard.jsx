@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { useNavigate } from "react-router-dom"
-import ApperIcon from "@/components/ApperIcon"
-import StatCard from "@/components/molecules/StatCard"
-import Button from "@/components/atoms/Button"
-import Card from "@/components/atoms/Card"
-import Loading from "@/components/ui/Loading"
-import Error from "@/components/ui/Error"
-import Empty from "@/components/ui/Empty"
-import contactService from "@/services/api/contactService"
-import dealService from "@/services/api/dealService"
-import activityService from "@/services/api/activityService"
-import taskService from "@/services/api/taskService"
-import { toast } from "react-toastify"
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import contactService from "@/services/api/contactService";
+import taskService from "@/services/api/taskService";
+import dealService from "@/services/api/dealService";
+import activityService from "@/services/api/activityService";
+import ApperIcon from "@/components/ApperIcon";
+import StatCard from "@/components/molecules/StatCard";
+import Loading from "@/components/ui/Loading";
+import Error from "@/components/ui/Error";
+import Empty from "@/components/ui/Empty";
+import Activities from "@/components/pages/Activities";
+import Button from "@/components/atoms/Button";
+import Card from "@/components/atoms/Card";
 
 const Dashboard = () => {
   const navigate = useNavigate()
@@ -33,17 +34,17 @@ const Dashboard = () => {
       ])
 
       // Calculate metrics
-      const totalDeals = deals.length
-      const totalValue = deals.reduce((sum, deal) => sum + deal.value, 0)
-      const wonDeals = deals.filter(deal => deal.stage === "closed-won")
-      const pipelineValue = deals.filter(deal => !["closed-won", "closed-lost"].includes(deal.stage))
-        .reduce((sum, deal) => sum + deal.value, 0)
+const totalDeals = deals.length
+      const totalValue = deals.reduce((sum, deal) => sum + (deal.value_c || 0), 0)
+const wonDeals = deals.filter(deal => deal.stage_c === "closed-won")
+      const pipelineValue = deals.filter(deal => !["closed-won", "closed-lost"].includes(deal.stage_c))
+        .reduce((sum, deal) => sum + (deal.value_c || 0), 0)
       
-      const recentActivities = activities
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
+const recentActivities = activities
+        .sort((a, b) => new Date(b.date_c) - new Date(a.date_c))
         .slice(0, 5)
       
-      const pendingTasks = tasks.filter(task => task.status === "pending").length
+const pendingTasks = tasks.filter(task => task.status_c === "pending").length
       
       setDashboardData({
         contacts: contacts.length,
@@ -156,26 +157,26 @@ const Dashboard = () => {
                 <div key={activity.Id} className="flex items-start space-x-3">
                   <div className="w-8 h-8 bg-gradient-to-br from-primary-100 to-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
                     <ApperIcon 
-                      name={activity.type === "call" ? "Phone" : activity.type === "meeting" ? "Calendar" : "Mail"} 
+name={activity.type_c === "call" ? "Phone" : activity.type_c === "meeting" ? "Calendar" : "Mail"} 
                       className="w-4 h-4 text-primary-600" 
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
-                      {activity.subject}
+<p className="text-sm font-medium text-gray-900 truncate">
+                      {activity.subject_c}
                     </p>
                     <p className="text-sm text-gray-500">
-                      {new Date(activity.date).toLocaleDateString()}
+{new Date(activity.date_c).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
-          ) : (
+) : (
             <Empty
               icon="Calendar"
-              title="No Recent Activities"
-              description="Start logging your customer interactions."
+              title="No Activities Yet"
+              description="Start logging activities to track your interactions."
               actionLabel="Log Activity"
               onAction={() => navigate("/activities")}
             />
@@ -201,13 +202,13 @@ const Dashboard = () => {
             <div className="space-y-4">
               {dashboardData.deals.map((deal) => (
                 <div key={deal.Id} className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-100">
-                  <div className="flex-1">
-                    <h4 className="font-medium text-gray-900">{deal.title}</h4>
-                    <p className="text-sm text-gray-600 capitalize">{deal.stage.replace("-", " ")}</p>
+<div className="flex-1">
+                    <h4 className="font-medium text-gray-900">{deal.title_c}</h4>
+                    <p className="text-sm text-gray-600 capitalize">{deal.stage_c?.replace("-", " ")}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-semibold text-gray-900">{formatCurrency(deal.value)}</p>
-                    <p className="text-sm text-gray-500">{deal.probability}%</p>
+<p className="font-semibold text-gray-900">{formatCurrency(deal.value_c)}</p>
+                    <p className="text-sm text-gray-500">{deal.probability_c}%</p>
                   </div>
                 </div>
               ))}

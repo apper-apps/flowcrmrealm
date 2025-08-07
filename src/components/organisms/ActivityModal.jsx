@@ -6,49 +6,51 @@ import FormField from "@/components/molecules/FormField"
 import { format } from "date-fns"
 
 const ActivityModal = ({ activity, contacts, deals, isOpen, onClose, onSave }) => {
-  const [formData, setFormData] = useState({
-    type: "call",
-    contactId: "",
-    dealId: "",
-    subject: "",
-    notes: "",
-    date: "",
-    duration: ""
+const [formData, setFormData] = useState({
+    type_c: "call",
+    contact_id_c: "",
+    deal_id_c: "",
+    subject_c: "",
+    notes_c: "",
+    date_c: "",
+    duration_c: ""
   })
 
   useEffect(() => {
     if (activity) {
-      setFormData({
-        type: activity.type || "call",
-        contactId: activity.contactId?.toString() || "",
-        dealId: activity.dealId?.toString() || "",
-        subject: activity.subject || "",
-        notes: activity.notes || "",
-        date: activity.date ? format(new Date(activity.date), "yyyy-MM-dd'T'HH:mm") : "",
-        duration: activity.duration?.toString() || ""
+setFormData({
+        type_c: activity.type_c || "call",
+        contact_id_c: activity.contact_id_c?.Id || activity.contact_id_c?.toString() || "",
+        deal_id_c: activity.deal_id_c?.Id || activity.deal_id_c?.toString() || "",
+        subject_c: activity.subject_c || "",
+        notes_c: activity.notes_c || "",
+        date_c: activity.date_c ? format(new Date(activity.date_c), "yyyy-MM-dd'T'HH:mm") : "",
+        duration_c: activity.duration_c?.toString() || ""
       })
     } else {
       const now = new Date()
-      setFormData({
-        type: "call",
-        contactId: "",
-        dealId: "",
-        subject: "",
-        notes: "",
-        date: format(now, "yyyy-MM-dd'T'HH:mm"),
-        duration: ""
+setFormData({
+        type_c: "call",
+        contact_id_c: "",
+        deal_id_c: "",
+        subject_c: "",
+        notes_c: "",
+        date_c: format(now, "yyyy-MM-dd'T'HH:mm"),
+        duration_c: ""
       })
     }
   }, [activity])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const activityData = {
-      ...formData,
-      contactId: parseInt(formData.contactId) || null,
-      dealId: parseInt(formData.dealId) || null,
-      date: new Date(formData.date).toISOString(),
-      duration: parseInt(formData.duration) || null
+const activityData = {
+      type_c: formData.type_c,
+      contact_id_c: parseInt(formData.contact_id_c) || null,
+      deal_id_c: parseInt(formData.deal_id_c) || null,
+      subject_c: formData.subject_c,
+      notes_c: formData.notes_c,
+      date_c: new Date(formData.date_c).toISOString(),
+      duration_c: parseInt(formData.duration_c) || null
     }
     onSave(activityData)
     onClose()
@@ -65,7 +67,7 @@ const ActivityModal = ({ activity, contacts, deals, isOpen, onClose, onSave }) =
     { value: "", label: "Select a contact (optional)" },
     ...contacts.map(contact => ({
       value: contact.Id.toString(),
-      label: `${contact.name} (${contact.company})`
+label: `${contact.Name} (${contact.company_c})`
     }))
   ]
 
@@ -73,7 +75,7 @@ const ActivityModal = ({ activity, contacts, deals, isOpen, onClose, onSave }) =
     { value: "", label: "Select a deal (optional)" },
     ...deals.map(deal => ({
       value: deal.Id.toString(),
-      label: deal.title
+label: deal.title_c
     }))
   ]
 
@@ -113,16 +115,16 @@ const ActivityModal = ({ activity, contacts, deals, isOpen, onClose, onSave }) =
                 <FormField
                   label="Activity Type"
                   type="select"
-                  value={formData.type}
-                  onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+value={formData.type_c}
+                  onChange={(e) => setFormData({ ...formData, type_c: e.target.value })}
                   options={typeOptions}
                 />
                 
                 <FormField
                   label="Duration (minutes)"
                   type="number"
-                  value={formData.duration}
-                  onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+value={formData.duration_c}
+                  onChange={(e) => setFormData({ ...formData, duration_c: e.target.value })}
                   placeholder="30"
                   min="1"
                 />
@@ -131,8 +133,8 @@ const ActivityModal = ({ activity, contacts, deals, isOpen, onClose, onSave }) =
               <FormField
                 label="Subject"
                 type="text"
-                value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+value={formData.subject_c}
+                onChange={(e) => setFormData({ ...formData, subject_c: e.target.value })}
                 placeholder="Brief description of the activity"
                 required
               />
@@ -141,16 +143,16 @@ const ActivityModal = ({ activity, contacts, deals, isOpen, onClose, onSave }) =
                 <FormField
                   label="Contact"
                   type="select"
-                  value={formData.contactId}
-                  onChange={(e) => setFormData({ ...formData, contactId: e.target.value })}
+value={formData.contact_id_c}
+                  onChange={(e) => setFormData({ ...formData, contact_id_c: e.target.value })}
                   options={contactOptions}
                 />
                 
                 <FormField
                   label="Related Deal"
                   type="select"
-                  value={formData.dealId}
-                  onChange={(e) => setFormData({ ...formData, dealId: e.target.value })}
+value={formData.deal_id_c}
+                  onChange={(e) => setFormData({ ...formData, deal_id_c: e.target.value })}
                   options={dealOptions}
                 />
               </div>
@@ -158,16 +160,16 @@ const ActivityModal = ({ activity, contacts, deals, isOpen, onClose, onSave }) =
               <FormField
                 label="Date & Time"
                 type="datetime-local"
-                value={formData.date}
-                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+value={formData.date_c}
+                onChange={(e) => setFormData({ ...formData, date_c: e.target.value })}
                 required
               />
               
               <FormField
                 label="Notes"
                 type="textarea"
-                value={formData.notes}
-                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+value={formData.notes_c}
+                onChange={(e) => setFormData({ ...formData, notes_c: e.target.value })}
                 placeholder="Add detailed notes about this activity..."
               />
             </div>

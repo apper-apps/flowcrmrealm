@@ -77,7 +77,7 @@ const Deals = () => {
     try {
       const deal = deals.find(d => d.Id === dealId)
       if (deal) {
-        await dealService.update(dealId, { ...deal, stage: newStage })
+await dealService.update(dealId, { stage_c: newStage })
         toast.success("Deal stage updated")
         loadData()
       }
@@ -104,9 +104,9 @@ const Deals = () => {
     }).format(value)
   }
 
-  const totalValue = deals.reduce((sum, deal) => sum + deal.value, 0)
-  const wonDeals = deals.filter(deal => deal.stage === "closed-won")
-  const wonValue = wonDeals.reduce((sum, deal) => sum + deal.value, 0)
+const totalValue = deals.reduce((sum, deal) => sum + (deal.value_c || 0), 0)
+const wonDeals = deals.filter(deal => deal.stage_c === "closed-won")
+const wonValue = wonDeals.reduce((sum, deal) => sum + (deal.value_c || 0), 0)
 
   if (loading) return <Loading />
   if (error) return <Error message={error} onRetry={loadData} />
