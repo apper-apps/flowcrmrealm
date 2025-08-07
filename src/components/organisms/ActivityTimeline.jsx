@@ -63,8 +63,11 @@ name={getActivityIcon(activity.type_c)}
 <Badge variant={getBadgeVariant(activity.type_c)} className="capitalize text-xs">
                         {activity.type_c}
                       </Badge>
-                      <span className="text-sm text-gray-500">
-{format(new Date(activity.date_c), "MMM dd, yyyy 'at' h:mm a")}
+<span className="text-sm text-gray-500">
+                        {activity.date && !isNaN(new Date(activity.date)) 
+                          ? format(new Date(activity.date), "MMM dd, yyyy 'at' h:mm a")
+                          : "Invalid date"
+                        }
                       </span>
 {activity.duration_c && (
                         <span className="text-sm text-gray-500">
