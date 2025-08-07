@@ -1,0 +1,68 @@
+[
+  {
+    "Id": 1,
+    "name": "Sarah Johnson",
+    "company": "TechFlow Solutions",
+    "email": "sarah.johnson@techflow.com",
+    "phone": "+1 (555) 123-4567",
+    "industry": "technology",
+    "notes": "Key decision maker for their CRM implementation. Very interested in our advanced analytics features.",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-20T14:45:00Z"
+  },
+  {
+    "Id": 2,
+    "name": "Michael Chen",
+    "company": "Global Finance Corp",
+    "email": "m.chen@globalfinance.com",
+    "phone": "+1 (555) 987-6543",
+    "industry": "finance",
+    "notes": "CFO looking to streamline their sales process. Budget approved for Q2 implementation.",
+    "createdAt": "2024-01-18T09:15:00Z",
+    "updatedAt": "2024-01-25T11:20:00Z"
+  },
+  {
+    "Id": 3,
+    "name": "Emily Rodriguez",
+    "company": "HealthCare Plus",
+    "email": "emily.r@healthcareplus.com",
+    "phone": "+1 (555) 456-7890",
+    "industry": "healthcare",
+    "notes": "Director of Operations. Needs integration with their existing patient management system.",
+    "createdAt": "2024-01-20T16:00:00Z",
+    "updatedAt": "2024-01-22T10:30:00Z"
+  },
+  {
+    "Id": 4,
+    "name": "David Kim",
+    "company": "Manufacturing Excellence",
+    "email": "david@manexcellence.com",
+    "phone": "+1 (555) 321-0987",
+    "industry": "manufacturing",
+    "notes": "VP of Sales. Interested in our mobile app for field sales team. Has 50+ sales reps.",
+    "createdAt": "2024-01-22T13:45:00Z",
+    "updatedAt": "2024-01-28T15:10:00Z"
+  },
+  {
+    "Id": 5,
+    "name": "Lisa Thompson",
+    "company": "RetailMax",
+    "email": "lisa.thompson@retailmax.com",
+    "phone": "+1 (555) 654-3210",
+    "industry": "retail",
+    "notes": "Store Operations Manager. Looking for customer relationship tools to increase repeat business.",
+    "createdAt": "2024-01-25T11:20:00Z",
+    "updatedAt": "2024-01-30T09:45:00Z"
+  },
+  {
+    "Id": 6,
+    "name": "Robert Wilson",
+    "company": "Strategic Consulting Group",
+    "email": "r.wilson@strategicgroup.com",
+    "phone": "+1 (555) 789-0123",
+    "industry": "consulting",
+    "notes": "Partner at consulting firm. Manages client relationships for Fortune 500 accounts.",
+    "createdAt": "2024-01-28T14:30:00Z",
+    "updatedAt": "2024-02-02T16:15:00Z"
+  }
+]

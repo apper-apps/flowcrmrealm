@@ -1,0 +1,92 @@
+[
+  {
+    "Id": 1,
+    "title": "Send TechFlow implementation proposal",
+    "contactId": 1,
+    "dealId": 1,
+    "dueDate": "2024-02-15T17:00:00Z",
+    "status": "completed",
+    "priority": "high"
+  },
+  {
+    "Id": 2,
+    "title": "Prepare demo for Global Finance team",
+    "contactId": 2,
+    "dealId": 2,
+    "dueDate": "2024-02-20T10:00:00Z",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "Id": 3,
+    "title": "Research HealthCare Plus integration requirements",
+    "contactId": 3,
+    "dealId": 3,
+    "dueDate": "2024-02-18T14:00:00Z",
+    "status": "pending",
+    "priority": "medium"
+  },
+  {
+    "Id": 4,
+    "title": "Follow up on Manufacturing Excellence mobile demo",
+    "contactId": 4,
+    "dealId": 4,
+    "dueDate": "2024-02-12T09:00:00Z",
+    "status": "completed",
+    "priority": "medium"
+  },
+  {
+    "Id": 5,
+    "title": "Send retail case studies to RetailMax",
+    "contactId": 5,
+    "dealId": 5,
+    "dueDate": "2024-02-25T16:00:00Z",
+    "status": "pending",
+    "priority": "low"
+  },
+  {
+    "Id": 6,
+    "title": "Schedule onboarding call with Strategic Consulting",
+    "contactId": 6,
+    "dealId": 6,
+    "dueDate": "2024-03-05T11:00:00Z",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "Id": 7,
+    "title": "Update CRM with latest deal stages",
+    "contactId": null,
+    "dealId": null,
+    "dueDate": "2024-02-16T18:00:00Z",
+    "status": "pending",
+    "priority": "low"
+  },
+  {
+    "Id": 8,
+    "title": "Prepare monthly sales report",
+    "contactId": null,
+    "dealId": null,
+    "dueDate": "2024-02-28T17:00:00Z",
+    "status": "pending",
+    "priority": "medium"
+  },
+  {
+    "Id": 9,
+    "title": "Call Sarah about implementation timeline",
+    "contactId": 1,
+    "dealId": 1,
+    "dueDate": "2024-02-14T10:30:00Z",
+    "status": "completed",
+    "priority": "high"
+  },
+  {
+    "Id": 10,
+    "title": "Send pricing options to Manufacturing Excellence",
+    "contactId": 4,
+    "dealId": 4,
+    "dueDate": "2024-02-22T15:00:00Z",
+    "status": "pending",
+    "priority": "medium"
+  }
+]
